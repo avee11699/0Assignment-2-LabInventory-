@@ -23,7 +23,7 @@ public class LabInventory {
 		String ItemID;
 		String ItemName;
 		String Description;
-		String category; 
+		String category = null; 
 		String supplierName;
 		int SupplierContact;
 		int price;
@@ -31,11 +31,12 @@ public class LabInventory {
 		int size = 70;
 		Item[]itemDatabase = new Item[size];
 		int qty = 0;
-		boolean x = true; 
+		boolean a = true; 
+		String id = null;
 		/**
 		 * display menu 
 		 */
-			
+		while( a = true){	
 			System.out.println("What do you want to do?");
 			System.out.println("	1. Enter a new item to inventory(password required)");
 			System.out.println("	2. Change information of an existing item(password required)");
@@ -50,7 +51,7 @@ public class LabInventory {
 			if(choice == 1) {
 				for(fail = 0; fail <= 3; fail++) {
 					System.out.print("enter password: ");
-					password = myinput.next();
+				    password = myinput.next();
 					
 					if(password.equalsIgnoreCase(password)) {
 						
@@ -83,7 +84,6 @@ public class LabInventory {
 							System.out.print("Available qty: ");
 							availableQuantity = myinput.nextInt();
 							
-							
 							itemDatabase[i]= new Item(ItemID, ItemName, Description, category, supplierName, SupplierContact, price, availableQuantity);
 							itemDatabase[i].setItemid(ItemID);
 							itemDatabase[i].setItemname(ItemName);
@@ -92,36 +92,134 @@ public class LabInventory {
 							itemDatabase[i].setSupplierName(supplierName);
 							itemDatabase[i].setSupplierContact(SupplierContact);
 							itemDatabase[i].setAvailableQty(availableQuantity);
+						
 						}
 					}
-					else {
-						if (fail ==4) {
-							System.out.print("Program detected suspicious activity and is terminating!");
+					else  {
+						System.out.print("Program detected suspicious activity and is terminating!");
 							break;
-						}
 					}
 				}
 			}
+				
+				
+			/**
+			 * option 2
+			 * update data in the attributes
+			 */
+			
 			if(choice == 2) {
-				System.out.println("What infromation of the item you wish to update?");
-				System.out.println("	1. Name");
-				System.out.println("	2. Descriptiom");
-				System.out.println("	3. Category");
-				System.out.println("	4. Supplier name");
-				System.out.println("	5. Supplier contacts");
-				System.out.println("	6. Price");
-				System.out.println("	7. Available qty");
-				System.out.println("	8. Quit");
-				System.out.println("Please enter your choice > ");
-				update = myinput.nextInt();
+				for(fail = 0; fail <= 3; fail++) {
+					System.out.print("enter password: ");
+					password = myinput.next();
+					
+					if(password.equalsIgnoreCase(password)) {
+						
 				
-				
+						for(int i=0; i<size; i++) {
+							System.out.print("enter item Id you wish to update: ");
+							id = myinput .next();
+							
+							if(itemDatabase[i].getItemid().equals(id)) {
+								
+								System.out.println("What infromation of the item you wish to update?");
+								System.out.println("	1. Name: "+ itemDatabase[i].getItemname());
+								System.out.println("	2. Descriptiom: "+ itemDatabase[i].getDescription());
+								System.out.println("	3. Category: "+ itemDatabase[i].getCategory());
+								System.out.println("	4. Supplier name: "+ itemDatabase[i].getSupplierName());
+								System.out.println("	5. Supplier contacts: "+ itemDatabase[i].getSupplierContact());
+								System.out.println("	6. Price: " + itemDatabase[i].getPrice());
+								System.out.println("	7. Available qty: "+ itemDatabase[i].getAvailableQty());
+								System.out.println(" 	8. Quit");
+								System.out.println("Please enter your choice > ");
+								update = myinput.nextInt();
+								
+								if(update == 1) {
+									System.out.print("Enter name: ");
+									String updatename = myinput.next();
+									itemDatabase[i].setItemname(updatename);
+									System.out.print(itemDatabase[i]);
+								}
+								
+								if(update == 2) {
+									System.out.print("Enter Description: ");
+									String updateDescription = myinput.next();
+									itemDatabase[i].setItemname(updateDescription);
+									System.out.print(itemDatabase[i]);
+								}
+								
+								if(update == 3) {
+									System.out.print("Enter Category: ");
+									String updateCategory = myinput.next();
+									itemDatabase[i].setItemname(updateCategory);
+									System.out.print(itemDatabase[i]);
+								}
+								
+								if(update == 4) {
+									System.out.print("Enter supplier name: ");
+									String updateSuppliername = myinput.next();
+									itemDatabase[i].setItemname(updateSuppliername);
+									System.out.print(itemDatabase[i]);
+								}
+								
+								if(update == 5) {
+									System.out.print("Enter Supplier contact: ");
+									String updateSupplierContact = myinput.next();
+									itemDatabase[i].setItemname(updateSupplierContact);
+									System.out.print(itemDatabase[i]);
+								}
+								
+								if(update == 6) {
+									System.out.print("Enter Price: ");
+									String updatePrice = myinput.next();
+									itemDatabase[i].setItemname(updatePrice);
+									System.out.print(itemDatabase[i]);
+								}
+								
+								if(update == 7) {
+									System.out.print("Enter available quantity: ");
+									String updateQty = myinput.next();
+									itemDatabase[i].setItemname(updateQty);
+									System.out.print(itemDatabase[i]);
+								}
+								
+								if(update == 8) {
+									System.out.print("*************************");
+									break;
+								}
+							}
+							else {
+								System.out.println("item ID not found in the system");
+								System.out.print("Enter valid item Id next time");
+								break;
+							}
+						}
+					}
+					else {
+						System.out.print("worng password");
+					}
+				}
 			}
 			
+			/**
+			 * option 3 
+			 * display all item with specified category
+			 */
 			if(choice == 3) {
-				System.out.print("hgjkyhb");
+				System.out.print("Enter Category:");
+				String findItemCat = myinput.next();
+				
+				for(int i=0; i<size; i++) {
+					if(itemDatabase[i].getCategory().contentEquals(category)) {
+						System.out.println("Item ID: "+ itemDatabase[i].getItemid()+ ", Item Name: "+itemDatabase[i].getItemname()+ ", Item Description: "+ itemDatabase[i].getDescription()+ ", Supplier Name: "+ itemDatabase[i].getSupplierName()+ ", Supplier Contact: "+itemDatabase[i].getSupplierContact());
+					}
+				}
 			}
 			
+			/**
+			 * option 4 
+			 * display details of all products which need to be re-ordered
+			 */
 			if(choice == 4) {
 				for(int i= 0; i<=qty; i++) {
 					
@@ -147,6 +245,8 @@ public class LabInventory {
 			}
 		}
 	}
+}
+
 
 
 
